@@ -11,4 +11,5 @@ mock
 python-multipart
 oci
 textract
+uuid
 

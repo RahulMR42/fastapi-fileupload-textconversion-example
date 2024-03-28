@@ -74,6 +74,8 @@ coverage.xml
 cover/
 tmp_inputs/*
 tmp_inputs
+tmp_*
+tmp_*/*
 
 # Translations
 *.mo
