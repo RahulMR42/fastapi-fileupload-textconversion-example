@@ -21,12 +21,13 @@ async def upload_page(request: Request):
 
 @router.post("/upload")
 def upload(files: List[UploadFile] = File(...)):
-    file_object = Files()
+    tmp_input_path = "tmp_inputs"
+    file_object = Files(tmp_input_path)
 
     for file in files:
         try:
             contents = file.file.read()
-            with open(f"inputs/{file.filename}", 'wb') as f:
+            with open(f"{tmp_input_path}/{file.filename}", 'wb') as f:
                 f.write(contents)
                 file_object.convert_to_text(file.filename)
 
