@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi import File, UploadFile
@@ -6,6 +6,7 @@ from typing import List
 import os
 
 from resources.files import Files
+from resources.basicauth import  Httpsbasicauth
 
 templates = Jinja2Templates(directory="templates")
 
@@ -19,7 +20,7 @@ router = APIRouter(
 async def upload_page(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@router.post("/upload")
+@router.post("/upload", dependencies=[Depends(Httpsbasicauth.verify_auth)])
 def upload(files: List[UploadFile] = File(...)):
     compartment_ocid = os.environ['compartment_ocid']
     tmp_input_path = "tmp_inputs"
