@@ -13,7 +13,7 @@ class Genai:
         text_to_summarize = text_to_summerise
         summarize_text_detail = oci.generative_ai_inference.models.SummarizeTextDetails()
         summarize_text_detail.serving_mode = oci.generative_ai_inference.models.OnDemandServingMode(model_id="cohere.command")
-        summarize_text_detail.compartment_id = "ocid1.compartment.oc1..aaaaaaaakp7cug2a5zpyl5sz6tnxvqlfw7hzaxc77fqovimxfk4f4ricz7kq"
+        summarize_text_detail.compartment_id = self.compartment_ocid
         summarize_text_detail.input = text_to_summarize
         summarize_text_detail.additional_command = ""
         summarize_text_detail.extractiveness = "HIGH"
